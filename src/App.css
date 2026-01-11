@@ -1,0 +1,716 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.portfolio-container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sky Background */
+.sky {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background: linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%);
+  overflow: hidden;
+}
+
+/* Clouds */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  opacity: 0.7;
+}
+
+.cloud:before,
+.cloud:after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}
+
+.cloud1 {
+  width: 120px;
+  height: 40px;
+  top: 80px;
+  left: 10%;
+  animation: floatCloud1 25s infinite linear;
+}
+
+.cloud1:before {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 20px;
+}
+
+.cloud1:after {
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  right: 20px;
+}
+
+.cloud2 {
+  width: 180px;
+  height: 60px;
+  top: 180px;
+  left: 30%;
+  animation: floatCloud2 35s infinite linear;
+  animation-delay: -10s;
+}
+
+.cloud2:before {
+  width: 70px;
+  height: 70px;
+  top: -35px;
+  left: 40px;
+}
+
+.cloud2:after {
+  width: 50px;
+  height: 50px;
+  top: -20px;
+  right: 50px;
+}
+
+.cloud3 {
+  width: 100px;
+  height: 35px;
+  top: 250px;
+  left: 60%;
+  animation: floatCloud3 30s infinite linear;
+  animation-delay: -5s;
+}
+
+.cloud3:before {
+  width: 45px;
+  height: 45px;
+  top: -20px;
+  left: 15px;
+}
+
+.cloud3:after {
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  right: 25px;
+}
+
+@keyframes floatCloud1 {
+  0% { transform: translateX(-150px); }
+  100% { transform: translateX(calc(100vw + 150px)); }
+}
+
+@keyframes floatCloud2 {
+  0% { transform: translateX(-200px); }
+  100% { transform: translateX(calc(100vw + 200px)); }
+}
+
+@keyframes floatCloud3 {
+  0% { transform: translateX(-180px); }
+  100% { transform: translateX(calc(100vw + 180px)); }
+}
+
+/* Sun */
+.sun {
+  position: absolute;
+  top: 40px;
+  right: 80px;
+  width: 60px;
+  height: 60px;
+  background: #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #FFA500, 0 0 80px rgba(255, 165, 0, 0.5);
+  animation: sunPulse 4s infinite ease-in-out;
+}
+
+@keyframes sunPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Bird Container */
+.bird-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  transition: transform 0.1s linear;
+}
+
+/* Bird Body - Now slightly tilted */
+.bird-body {
+  width: 80px;
+  height: 40px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: rotate(-5deg); /* Slight tilt for more dynamic look */
+  transform-origin: center center;
+  z-index: 2; /* Body between left wing (behind) and right wing (front) */
+}
+
+.bird-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  transition: transform 0.1s linear;
+}
+
+/* Bird Body - Now slightly tilted */
+.bird-body {
+  width: 80px;
+  height: 40px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: rotate(-5deg); /* Slight tilt for more dynamic look */
+  transform-origin: center center;
+}
+
+/* Bird Head - Adjusted for the tilt */
+.bird-head {
+  position: absolute;
+  top: -15px;
+  left: 55px;
+  width: 35px;
+  height: 35px;
+  background: #FF8E53;
+  border-radius: 50%;
+  transform: rotate(-5deg); /* Match body tilt */
+  z-index: 2; /* Head above everything */
+}
+
+.bird-eye {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 3s infinite;
+  z-index: 3; /* Eye above head */
+}
+
+.bird-eye:after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 5px;
+  height: 5px;
+  background: #333;
+  border-radius: 50%;
+}
+
+@keyframes blink {
+  0%, 96%, 98%, 100% { height: 10px; }
+  97%, 99% { height: 1px; }
+}
+
+.bird-beak {
+  position: absolute;
+  top: 15px;
+  right: -10px;
+  width: 20px;
+  height: 12px;
+  background: #FFD93D;
+  border-radius: 50%;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: rotate(-5deg); /* Match body tilt */
+  z-index: 3; /* Beak above head and wing */
+}
+
+.bird-tail {
+  position: absolute;
+  top: 15px;
+  left: -25px;
+  width: 30px;
+  height: 20px;
+  background: #FF6B6B;
+  border-radius: 50%;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  transform: rotate(-5deg); /* Match body tilt */
+  z-index: 1; /* Tail behind body */
+}
+
+/* Enhanced Bird Wings with better animation */
+.bird-wing {
+  position: absolute;
+  width: 70px;
+  height: 35px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  border-radius: 50%;
+  filter: brightness(0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Right wing (front wing) - positioned OVER the body */
+.bird-wing.right {
+  right: -15px;
+  top: 8px;
+  transform-origin: 15% 50%;
+  transform: rotate(-15deg); /* Starting position */
+  animation: rightWingFlap 0.3s infinite alternate ease-in-out;
+  z-index: 4; /* In front of body and head */
+}
+
+/* Left wing (back wing) - positioned UNDER the body */
+.bird-wing.left {
+  left: -25px;
+  top: 8px;
+  transform-origin: 85% 50%;
+  transform: rotate(15deg); /* Starting position */
+  animation: leftWingFlap 0.3s infinite alternate ease-in-out;
+  z-index: -1; /* Behind the body */
+}
+
+/* Different animations for each wing for more natural look */
+@keyframes leftWingFlap {
+  0% {
+    transform: rotate(15deg) scaleY(1);
+  }
+  100% {
+    transform: rotate(60deg) scaleY(0.8);
+  }
+}
+
+@keyframes rightWingFlap {
+  0% {
+    transform: rotate(-15deg) scaleY(1);
+  }
+  100% {
+    transform: rotate(-60deg) scaleY(0.8);
+  }
+}
+
+/* Make body have lower z-index so right wing can overlap */
+.bird-body {
+  z-index: 2; /* Body between left wing (behind) and right wing (front) */
+}
+
+/* Optional: Add hover effect for interactive birds */
+.bird-container:hover .bird-body {
+  transform: rotate(-10deg) scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.bird-container:hover .bird-wing.left,
+.bird-container:hover .bird-wing.right {
+  animation-duration: 0.2s; /* Faster flapping on hover */
+}
+
+/* Optional: Add flying animation to the entire bird */
+.bird-container.flying {
+  animation: flyingAnimation 0.3s infinite alternate ease-in-out;
+}
+
+@keyframes flyingAnimation {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Optional: Add wing highlight for more depth */
+.bird-wing.right::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  width: 50px;
+  height: 25px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Name Display */
+.name-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  animation: nameReveal 1.5s ease-out;
+  z-index: 15;
+}
+
+.name {
+  font-size: 4.5rem;
+  background: linear-gradient(45deg, #FF6B6B, #FFD93D, #6BCF7F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+  animation: nameGlow 2s infinite alternate;
+}
+
+.title {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: subtitleFloat 3s infinite ease-in-out;
+}
+
+.name-sparkle {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: sparkle 2s infinite linear;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes nameReveal {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    filter: blur(0);
+  }
+}
+
+@keyframes nameGlow {
+  from {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.6));
+  }
+}
+
+@keyframes subtitleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 20px; }
+}
+
+/* Portfolio Content */
+.portfolio-content {
+  position: relative;
+  max-width: 1200px;
+  margin: -50px auto 0;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.15);
+  animation: contentAppear 1s ease-out;
+  z-index: 30;
+}
+
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.bird-in-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2.5rem;
+  opacity: 0.3;
+  animation: birdBob 3s infinite ease-in-out;
+}
+
+@keyframes birdBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.portfolio-header h1 {
+  font-size: 3rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column */
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.portfolio-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.portfolio-card h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: justify;
+}
+
+.portfolio-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.skills-list span {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.projects-list {
+  margin-top: 1rem;
+}
+
+.project-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.project-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.project-item h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.project-item p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.contact-info {
+  margin-top: 1rem;
+}
+
+.contact-info p {
+  margin-bottom: 0.8rem;
+  color: #444;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-links span {
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-links span:hover {
+  background: #667eea;
+  color: white;
+}
+
+.restart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem auto 0;
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.restart-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+}
+
+.bird-emoji {
+  font-size: 1.2rem;
+  animation: birdFly 1s infinite alternate;
+}
+
+@keyframes birdFly {
+  from { transform: translateX(0); }
+  to { transform: translateX(5px); }
+}
+
+/* Instructions */
+.instructions {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  z-index: 25;
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  animation: dotPulse 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(0); opacity: 0; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.instruction-text {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  animation: textFade 2s infinite alternate;
+}
+
+@keyframes textFade {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sky {
+    height: 50vh;
+  }
+  
+  .name {
+    font-size: 2.5rem;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+  }
+  
+  .portfolio-content {
+    margin: -30px 1rem 0;
+    padding: 2rem 1rem;
+  }
+  
+  .portfolio-header h1 {
+    font-size: 2rem;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .portfolio-card {
+    padding: 1.5rem;
+  }
+  
+  .bird-body {
+    transform: scale(0.7);
+  }
+  
+  .bird-in-corner {
+    display: none;
+  }
+}
+
+a {
+  text-decoration: none;
+}
